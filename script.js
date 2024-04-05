@@ -65,5 +65,6 @@ const tabsContent = document.querySelectorAll('.operations__content');
 tabsContainer.addEventListener('click', function (e) {
   const clicked = e.target.closest('.operations__tab');
   if (!clicked) return; // Guard clause
+  tabs.forEach(t => t.classList.remove('operations__tab--active'));
   clicked.classList.add('operations__tab--active');
 });
