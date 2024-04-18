@@ -163,7 +163,7 @@ const imgObserver = new IntersectionObserver(loadImg, {
 imgTargets.forEach(img => imgObserver.observe(img));
 
 // Slider
-const maxSlides = slides.length;
+const maxSlide = slides.length;
 let curSlide = 0;
 
 const goToSlide = function (slide) {
@@ -176,7 +176,7 @@ goToSlide(0);
 
 // Next Slide
 const nextSlide = function () {
-  if (curSlide === maxSlides - 1) {
+  if (curSlide === maxSlide - 1) {
     curSlide = 0;
   } else {
     curSlide++;
@@ -184,4 +184,14 @@ const nextSlide = function () {
   goToSlide(curSlide);
 };
 
+const prevSlide = function () {
+  if (curSlide === 0) {
+    curSlide = maxSlide - 1;
+  } else {
+    curSlide--;
+  }
+  goToSlide(curSlide);
+};
+
 btnRight.addEventListener('click', nextSlide);
+btnLeft.addEventListener('click', prevSlide);
