@@ -163,22 +163,25 @@ const imgObserver = new IntersectionObserver(loadImg, {
 imgTargets.forEach(img => imgObserver.observe(img));
 
 // Slider
-slides.forEach((s, i) => (s.style.transform = `translateX(${100 * i}%)`));
-// 0%, 100%, 200%, 300%
-
-let curSlide = 0;
 const maxSlides = slides.length;
+let curSlide = 0;
+
+const goToSlide = function (slide) {
+  slides.forEach(
+    (s, i) => (s.style.transform = `translateX(${100 * (i - slide)}%)`)
+  );
+};
+
+goToSlide(0);
 
 // Next Slide
-btnRight.addEventListener('click', function () {
+const nextSlide = function () {
   if (curSlide === maxSlides - 1) {
     curSlide = 0;
   } else {
     curSlide++;
   }
+  goToSlide(curSlide);
+};
 
-  slides.forEach(
-    (s, i) => (s.style.transform = `translateX(${100 * (i - curSlide)}%)`)
-  );
-});
-// curSlide = 1: -100%, 0%, 100%, 200%
+btnRight.addEventListener('click', nextSlide);
