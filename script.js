@@ -13,6 +13,7 @@ const nav = document.querySelector('.nav');
 const header = document.querySelector('.header');
 const allSections = document.querySelectorAll('.section');
 const imgTargets = document.querySelectorAll('img[data-src]');
+const slides = document.querySelectorAll('.slide');
 
 ///////////////////////////////////////
 // Modal window
@@ -158,3 +159,6 @@ const imgObserver = new IntersectionObserver(loadImg, {
 });
 
 imgTargets.forEach(img => imgObserver.observe(img));
+
+// Slider
+slides.forEach((s, i) => (s.style.transform = `translateX(${100 * i}%)`));
