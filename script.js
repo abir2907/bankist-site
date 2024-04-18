@@ -14,6 +14,8 @@ const header = document.querySelector('.header');
 const allSections = document.querySelectorAll('.section');
 const imgTargets = document.querySelectorAll('img[data-src]');
 const slides = document.querySelectorAll('.slide');
+const btnLeft = document.querySelector('.slider__btn--left');
+const btnRight = document.querySelector('.slider__btn--right');
 
 ///////////////////////////////////////
 // Modal window
@@ -162,3 +164,21 @@ imgTargets.forEach(img => imgObserver.observe(img));
 
 // Slider
 slides.forEach((s, i) => (s.style.transform = `translateX(${100 * i}%)`));
+// 0%, 100%, 200%, 300%
+
+let curSlide = 0;
+const maxSlides = slides.length;
+
+// Next Slide
+btnRight.addEventListener('click', function () {
+  if (curSlide === maxSlides - 1) {
+    curSlide = 0;
+  } else {
+    curSlide++;
+  }
+
+  slides.forEach(
+    (s, i) => (s.style.transform = `translateX(${100 * (i - curSlide)}%)`)
+  );
+});
+// curSlide = 1: -100%, 0%, 100%, 200%
